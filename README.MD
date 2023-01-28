@@ -1,0 +1,1 @@
+npm install @rneui/themed @rneui/base
