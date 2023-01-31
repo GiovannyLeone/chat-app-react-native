@@ -6,7 +6,7 @@ import React from 'react';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
-import { InputLogin } from '../components/Login/InputLogin';
+import { InputComponent } from '../components/inputComponent/InputComponent';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
 
@@ -37,22 +37,28 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
         onChangeText={onChangeText}
         placeholder="Username"
       /> */}
+<View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
 
-      <InputLogin />
+      <InputComponent
+      inputType = "Username"
+      inputIcon = {require('../assets/images/login/profile.png')}
+      onChange = {onChangeText}
+      value = {text}
+      secureInput = {false}
+      />
 
-
-
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeText}
-        // value={number}
-        placeholder="Password"
+      <InputComponent
+      inputType = "Password"
+      inputIcon = {require('../assets/images/login/key-square.png')}
+      onChange = {onChangeNumber}
+      value = {number}   
+      secureInput = {true}  
       />
 
       <Button
         title="Login"
         size="lg"
-        onPress={() => Alert.alert(text)}
+        onPress={() => Alert.alert(text, number)}
         buttonStyle={{
           backgroundColor: mediumPurple,
           borderRadius: 35,
@@ -60,10 +66,9 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
         containerStyle={{
           width: 200,
           marginHorizontal: 50,
-          marginVertical: 10,
+          marginVertical: 50,
         }} />
 
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       {/* <EditScreenInfo path="/screens/TabOneScreen.tsx" /> */}
     </View>
   );
@@ -122,8 +127,6 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
     alignItems: 'center',
   },
-
-
   separator: {
     marginVertical: 30,
     height: 1,
