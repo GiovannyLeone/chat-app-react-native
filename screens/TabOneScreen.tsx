@@ -6,12 +6,14 @@ import React from 'react';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
+
+// my Component
 import { InputComponent } from '../components/inputComponent/InputComponent';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
 
-  const [text, onChangeText] = React.useState('Username');
-  const [number, onChangeNumber] = React.useState('Password');
+  const [text, onChangeText] = React.useState(String);
+  const [number, onChangeNumber] = React.useState(String);
 
   return (
     <View style={styles.container}>
@@ -28,37 +30,32 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
       <Text style={styles.title}>the best IA Chat</Text>
 
 
-      {/* <Image
-        source={require('../assets/images/profile.png')}
-      // style={{width: 5, height: 5}}
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeText}
-        placeholder="Username"
-      /> */}
-<View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
 
       <InputComponent
-      inputType = "Username"
-      inputIcon = {require('../assets/images/login/profile.png')}
-      onChange = {onChangeText}
-      value = {text}
-      secureInput = {false}
+        inputType="Username"
+        inputIcon={require('../assets/images/login/profile.png')}
+        onChange={onChangeText}
+        value={text}
+        secureInput={false}
       />
 
       <InputComponent
-      inputType = "Password"
-      inputIcon = {require('../assets/images/login/key-square.png')}
-      onChange = {onChangeNumber}
-      value = {number}   
-      secureInput = {true}  
+        inputType="Password"
+        inputIcon={require('../assets/images/login/key-square.png')}
+        onChange={onChangeNumber}
+        value={number}
+        secureInput={true}
       />
 
       <Button
         title="Login"
         size="lg"
-        onPress={() => Alert.alert(text, number)}
+        onPress={() => {
+          if (number.length !== 0 && text.length !== 0 && number !== "Password" && text !== "Username") {
+            navigation.navigate("TabTwo")
+          }
+        }}
         buttonStyle={{
           backgroundColor: mediumPurple,
           borderRadius: 35,
@@ -68,6 +65,13 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
           marginHorizontal: 50,
           marginVertical: 50,
         }} />
+
+      <Text style={styles.textStyle}>
+        Não tem conta?{''}
+        <Text
+          style={styles.hyperlinkStyle}
+          onPress={() => navigation.navigate("TabTwo")}>Aqui</Text>
+      </Text>
 
       {/* <EditScreenInfo path="/screens/TabOneScreen.tsx" /> */}
     </View>
@@ -132,4 +136,11 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+  textStyle: {
+    fontSize: 20,
+  },
+  hyperlinkStyle: {
+    color: 'blue',
+  },
+
 });
