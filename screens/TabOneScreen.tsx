@@ -58,7 +58,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
         }}
         buttonStyle={{
           backgroundColor: mediumPurple,
-          borderRadius: 35,
+          borderRadius: 15,
         }}
         containerStyle={{
           width: 200,

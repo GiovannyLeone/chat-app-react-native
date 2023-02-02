@@ -4,7 +4,16 @@ import { Text, View } from '../Themed';
 
 const InputComponent = (props: any) => {      
     return(
-        <View style={styles.SectionStyle}>
+        <View style={{
+        width: props.setWidthInput || "70%",
+        marginTop: 20,
+        borderWidth: props.setBorderInput,
+        borderBottomWidth: 1,
+        borderColor: darkPurple,
+        borderRadius: props.setBorderRadiusInput,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center', }}>
         <Image
           source={props.inputIcon} //Change your icon image here
           style={styles.iconInput}
@@ -12,15 +21,18 @@ const InputComponent = (props: any) => {
         <TextInput
           style={styles.inputComponent}
           onChangeText={props.onChange}
-          placeholder={props.inputType}
+          placeholder ={props.inputType}
           secureTextEntry = {props.secureInput}
         />
       </View>
     )
 }
 
+
 const mediumPurple: string = '#5B259F'
 const darkPurple: string = '#2F1155'
+
+
 
 const styles = StyleSheet.create({
   SectionStyle: {
