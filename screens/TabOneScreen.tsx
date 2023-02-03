@@ -28,6 +28,14 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
 
 
       <Text style={styles.title}>the best IA Chat</Text>
+      <Image
+        source={require('../assets/images/logo/logo.png')}
+        style={{
+          width: 100,
+          height: 100,
+          marginTop: 10
+        }}
+      />
 
 
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />

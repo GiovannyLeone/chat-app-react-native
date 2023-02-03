@@ -6,9 +6,12 @@ const InputComponent = (props: any) => {
     return(
         <View style={{
         width: props.setWidthInput || "70%",
-        marginTop: 20,
+        marginTop: props.setMarginTop || 0,
+        marginBottom: props.setMarginBottom || 0,
         borderWidth: props.setBorderInput,
         borderBottomWidth: 1,
+        borderBottomLeftRadius: props.setBorderBottomLeftRadius || 0,
+        borderTopLeftRadius: props.setBorderTopLeftRadius || 0,
         borderColor: darkPurple,
         borderRadius: props.setBorderRadiusInput,
         flexDirection: 'row',
