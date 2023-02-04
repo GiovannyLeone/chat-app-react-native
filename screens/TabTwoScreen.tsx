@@ -8,21 +8,45 @@ import { Text, View } from '../components/Themed';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+import axios, { AxiosError } from 'axios';
+
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.post['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,PATCH,OPTIONS';
+axios.defaults.headers.post['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, Content-Length, X-Requested-With';
+
+
+// import $ from "jquery"
+
+
 
 export default function TabTwoScreen() {
 
   const [textChat, onChangeTextChat] = React.useState(String);
 
-  const setShowText = async (pSetShowText: string) => {
-    await onChangeTextChat(pSetShowText)
-    return pSetShowText
+  const SendText = (pdataForm: string) => {
+
+    try {
+      axios({
+        method: 'POST', // verbo http
+        baseURL: 'http://localhost:80/apiChatApp/mvc/model/user-message.php', // url    
+        data: pdataForm
+      })
+        .then(response => {
+          console.log(response.data)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    } catch(error: any) {
+      throw Error(error);
+    }
   }
 
 
   return (
     <View style={styles.container}>
       <Text>the best IA Chat</Text>
-      {textChat !== "" && <Text>You to Type: {textChat} </Text> }
+      {textChat !== "" && <Text>You to Type: {textChat} </Text>}
 
 
       <View style={styles.flexLine}>
@@ -48,12 +72,13 @@ export default function TabTwoScreen() {
           icon={<MaterialCommunityIcons name="cube-send" size={24} color="white" />}
           onPress={() => {
             if (textChat.length !== 0 && textChat !== "") {
-              alert(setShowText(textChat))
-              setShowText(textChat)
+              // alert(setShowText(textChat))
+              // setShowText(textChat
 
-
-
-              // 
+              const dataForm: string = JSON.stringify({
+                messageUser: textChat
+              })
+              SendText( textChat )
             }
           }}
 
